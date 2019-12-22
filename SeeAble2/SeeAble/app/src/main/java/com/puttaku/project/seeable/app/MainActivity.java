@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     private ImageView imageViewResult;
     private CameraView cameraView;
     private Handler handler = new Handler();
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     Runnable runnable;
     String userData = "userData";
     @Override
@@ -61,16 +60,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         dialog = new Dialog(this);
         plus_icon = findViewById(R.id.plus_button);
         cameraView = findViewById(R.id.cameraView);
-        int CallPermission = checkSelfPermission(Manifest.permission.CALL_PHONE);
-        int CameraPermission = checkSelfPermission(Manifest.permission.CAMERA);
-        int AudioPermission = checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS);
-        if(CallPermission != PackageManager.PERMISSION_GRANTED || CameraPermission != PackageManager.PERMISSION_GRANTED  || AudioPermission != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[] {Manifest.permission.CALL_PHONE,Manifest.permission.CAMERA,Manifest.permission.MODIFY_AUDIO_SETTINGS},
-                    REQUEST_CODE_ASK_PERMISSIONS);
-        }
-        else{
-            cameraView.setMethod(CameraKit.Constants.METHOD_STILL);
-        }
         cameraView.setMethod(CameraKit.Constants.METHOD_STILL);
         tts = new TextToSpeech(this, this,"com.google.android.tts");
 //        imageViewResult = findViewById(R.id.imageViewResult);
@@ -150,12 +139,9 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         runnable = new Runnable() {
             @Override
             public void run() {
-                if(checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED  && checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) != PackageManager.PERMISSION_GRANTED){
+                if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
                     cameraView.captureImage();
                     handler.postDelayed(this, 1000);
-                }
-                else{
-                    finish();
                 }
             }
         };

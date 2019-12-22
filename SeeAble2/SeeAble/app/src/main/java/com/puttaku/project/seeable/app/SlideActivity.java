@@ -107,12 +107,12 @@ public class SlideActivity extends AppCompatActivity {
     };
     void gotoRegister() {
         if(currentPage == dot.length - 1 && btn_next.getText() == "LET'S START"){
-            Intent intent = new Intent(this,SoundregisActivity.class);
+            Intent intent = new Intent(this,RegisterActivity.class);
             startActivity(intent);
         }
     }
     void skipRegister () {
-        Intent intent = new Intent(this,SoundregisActivity.class);
+        Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
         finish();
     }

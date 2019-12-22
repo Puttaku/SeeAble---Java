@@ -1,8 +1,11 @@
 package com.puttaku.project.seeable.app;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class ContactRegisActivity extends AppCompatActivity {
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.regis_people_contact);
@@ -48,9 +52,30 @@ public class ContactRegisActivity extends AppCompatActivity {
             });
         }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+
     private void onFinish() {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
+        int CallPermission = checkSelfPermission(Manifest.permission.CALL_PHONE);
+        if(CallPermission != PackageManager.PERMISSION_GRANTED ){
+            requestPermissions(new String[] {Manifest.permission.CALL_PHONE},
+                    REQUEST_CODE_ASK_PERMISSIONS);
+        }
+        else{
+            System.exit(0);
+        }
+//        else{
+//            Intent intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
     }
 }
