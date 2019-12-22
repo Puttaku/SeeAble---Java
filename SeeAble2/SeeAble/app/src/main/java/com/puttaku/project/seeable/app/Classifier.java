@@ -10,12 +10,12 @@ public interface Classifier {
 
 //        private final String id;
         private final String title;
-//        private final Float confidence;
+        private final Float confidence;
 
-        public Recognition(final String title) {
+        public Recognition(final String title,final Float confidence) {
 //            this.id = id;
             this.title = title;
-//            this.confidence = confidence;
+            this.confidence = confidence;
         }
 
 //        public String getId() {
@@ -38,7 +38,12 @@ public interface Classifier {
 //            }
 
             if (title != null) {
-                resultString = resultString + title;
+                if(confidence * 100.0f >= 50.0f){
+                    resultString = resultString + title;
+                }
+                else{
+                    resultString = resultString + "nothing";
+                }
             }
 
 //            if (confidence != null) {

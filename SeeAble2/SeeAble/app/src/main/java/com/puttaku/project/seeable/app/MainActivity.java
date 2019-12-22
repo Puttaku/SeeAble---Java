@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     String name,tel,contactName,contactTel;
     private Executor executor = Executors.newSingleThreadExecutor();
     private TextView textViewResult,nameText,telText,conName,conTel;
-    private Button btnDetectObject, btnToggleCamera,plus_icon;
+    private Button plus_icon;
     private ImageView imageViewResult;
     private CameraView cameraView;
     private Handler handler = new Handler();
@@ -62,20 +62,13 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         cameraView = findViewById(R.id.cameraView);
         cameraView.setMethod(CameraKit.Constants.METHOD_STILL);
         tts = new TextToSpeech(this, this,"com.google.android.tts");
-//        imageViewResult = findViewById(R.id.imageViewResult);
         textViewResult = findViewById(R.id.textViewResult);
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
-//        btnToggleCamera = findViewById(R.id.btnToggleCamera);
-        btnDetectObject = findViewById(R.id.btnDetectObject);
-//        nameText = findViewById(R.id.name_main);
-//        telText = findViewById(R.id.name_main2);
         SharedPreferences pref = getSharedPreferences(userData, 0);
         name = pref.getString("Username","-");
         tel = pref.getString("Tel","-");
         contactName = pref.getString("Contactname","-");
         contactTel = pref.getString("ContactTel","-");
-//        nameText.setText("Name : " + name);
-//        telText.setText("Tel : " + tel);
         textViewResult.setText("Waiting for new Event...");
         cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
@@ -94,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
 
-//                imageViewResult.setImageBitmap(bitmap);
-
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
                 if(!tts.isSpeaking()){
                     if(results.get(0).toString().equals("crosswalk")){
@@ -112,20 +103,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             @Override
             public void onVideo(CameraKitVideo cameraKitVideo) {
 
-            }
-        });
-
-//        btnToggleCamera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cameraView.toggleFacing();
-//            }
-//        });
-
-        btnDetectObject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cameraView.captureImage();
             }
         });
         plus_icon.setOnClickListener(new View.OnClickListener() {
@@ -207,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                btnDetectObject.setVisibility(View.VISIBLE);
+
             }
         });
     }
