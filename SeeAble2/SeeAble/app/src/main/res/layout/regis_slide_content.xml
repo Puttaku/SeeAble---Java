@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/regis_slide"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#42B0FF">
+
+    <TextView
+        android:id="@+id/regis_heading"
+        android:layout_width="303dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="89dp"
+        android:text="@string/regis_heading_1"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/regis_sub_heading"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regis_heading"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="21dp"
+        android:text="@string/regis_sub_heading_1"
+        android:textColor="#E1E1E1" />
+
+    <TextView
+        android:id="@+id/name_heading"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regis_sub_heading"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/name_tag"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tel_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name_box"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="21dp"
+        android:text="@string/tel_tag"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/tel_box"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/tel_heading"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_corner_button"
+        android:ems="10"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/addr_heading"
+        android:layout_width="101dp"
+        android:layout_height="28dp"
+        android:layout_below="@id/tel_box"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/Addr_tag"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/addr_box"
+        android:layout_width="369dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/addr_heading"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_corner_button"
+        android:ems="10"
+        android:inputType="textPostalAddress" />
+
+    <EditText
+        android:id="@+id/name_box"
+        android:layout_width="369dp"
+        android:layout_height="38dp"
+        android:layout_below="@id/name_heading"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/round_corner_button"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/regis_next_button"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/round_corner_button"
+        android:text="@string/next_button"
+        android:textColor="@color/colorPrimaryDark" />
+
+</RelativeLayout>

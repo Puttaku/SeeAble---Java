@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.puttaku.project.seeable.app">
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+<!--        <activity android:name=".MainActivity">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+        <activity android:name="com.puttaku.project.seeable.app.SplashActivity" android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.puttaku.project.seeable.app.SlideActivity"/>
+        <activity android:name="com.puttaku.project.seeable.app.MainActivity"/>
+        <activity android:name="com.puttaku.project.seeable.app.RegisterActivity"/>
+        <activity android:name="com.puttaku.project.seeable.app.ContactRegisActivity"/>
+        <activity android:name="com.puttaku.project.seeable.app.SoundregisActivity"/>
+        <activity android:name="com.puttaku.project.seeable.app.SoundregisActivity2"/>
+        <activity android:name="com.puttaku.project.seeable.app.SoundregisActivity3"/>
+        <activity android:name="com.puttaku.project.seeable.app.SoundregisActivity4"/>
+        <activity android:name=".PermissionActivity"/>
+    </application>
+
+</manifest>

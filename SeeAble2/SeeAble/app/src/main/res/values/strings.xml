@@ -1,0 +1,58 @@
+<resources>
+    <!--Boarding Content-->
+    <!--Heading-->
+    <string name="app_name">SeeAble</string>
+    <string name="heading_slide">What is SeeAble</string>
+    <!--Content-->
+    <string name="subheading_slide_page_1">SeeAble is an app that help blinds to warn dangers and obstacles.</string>
+    <string name="content_page_1">this make sightless people more safety.</string>
+    <string name="subheading_slide_page_2">When we see dangers or obstacles. We “alert” by voice to you.</string>
+    <string name="content_page_2">Supported language : Thai, English.</string>
+    <string name="subheading_slide_page_3">When you have accident and fall down, device will call for help!</string>
+    <string name="content_page_3">So other people can help you in time.</string>
+    <string name="subheading_slide_page_4">The app can show information and contact in-app</string>
+    <string name="content_page_4">This app also can call an ambulance when an emergency accident occur.</string>
+    <!--*****Boarding Content*****-->
+    <!--Register Content-->
+    <!--Heading-->
+    <string name="regis_heading_1">Let me know your information</string>
+    <string name="regis_heading_2">Next...</string>
+    <!--Sub-Heading-->
+    <string name="regis_sub_heading_1">Don’t worry, It’s just simple personal data and  we don’t use your data for anything but for  Medical purpose.</string>
+    <string name="regis_sub_heading_2">Disables can use Speech-to-Text to fill your information. If you want to help Disable by typing, press “Insert information by typing”. If you want to exit speeching, you can say "cancel" to exit.</string>
+    <string name="regis_sub_heading_3">What is your phone number.</string>
+    <string name="regis_type_button">Insert information by typing</string>
+    <!--insert text-->
+    <string name="name_tag">Name</string>
+    <string name="tel_tag">Tel. number</string>
+    <string name="Addr_tag">Address</string>
+    <!--*****Register Content*****-->
+    <!--Contact Register-->
+    <!--Heading-->
+    <string name="regis_contact_heading">Person to notify</string>
+    <string name="regis_contact_heading_2">in case of emergency</string>
+    <string name="regis_contact_subheading">In case that you got an emergency accident. Helper can contact to detail and solve problem.</string>
+    <string name="regis_contact_heading_3">Last thing...</string>
+    <string name="regis_contact_subheading_2">Tell me your notify persons phone number.</string>
+    <!--insert text-->
+    <string name="contact_pers_tag">Name of Person</string>
+    <!--For Tel. Use tel_tag instead.-->
+    <!--*****Contact Register*****-->
+    <!--Other-->
+    <string name="finish">Finish</string>
+    <!--Button-->
+
+    <string name="skip_button">Skip</string>
+    <string name="back_button">&lt; Back</string>
+    <string name="next_button">Next &gt;</string>
+    <!--Speech Recognize-->
+    <string name="speech_name">So, what is your name</string>
+    <string name="speech_notify_name">What is your notify persons name.</string>
+    <string name="finish_recognize">Thats all, You will now automatically redirect to the app.</string>
+    <!--*****Other*****-->
+    <string name="permission_required">Camera permission required to run application.</string>
+    <string name="heading_inf">Personal Information</string>
+    <string name="emergency">Emergency Call</string>
+    <string name="notify">Call Notify Person</string>
+    <string name="try_again">Try again</string>
+</resources>
