@@ -38,7 +38,7 @@ public interface Classifier {
 //            }
 
             if (title != null) {
-                if(confidence * 100.0f >= 50.0f){
+                if(confidence * 100.0f >= 40.0f){
                     resultString = resultString + title;
                 }
                 else{

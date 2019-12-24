@@ -117,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
             @Override
             public void run() {
                 if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                    cameraView.setFocus(CameraKit.Constants.FOCUS_CONTINUOUS);
                     cameraView.captureImage();
                     handler.postDelayed(this, 1000);
                 }
