@@ -1,13 +1,16 @@
 package com.puttaku.project.seeable.app;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -28,6 +31,7 @@ public class SoundregisActivity4 extends AppCompatActivity implements TextToSpee
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Runnable r1;
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,25 +146,36 @@ public class SoundregisActivity4 extends AppCompatActivity implements TextToSpee
         editor.clear();
         editor.apply();
     }
-
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            tts.speak(getString(R.string.finish_recognize), TextToSpeech.QUEUE_ADD,null, null);
+            Runnable delay = new Runnable() {
+                @Override
+                public void run() {
+                    tts.speak("Opening Camera", TextToSpeech.QUEUE_FLUSH,null, null);
+                    Intent next = new Intent(SoundregisActivity4.this, MainActivity.class);
+                    editor.putBoolean("FinishedInformation", true);
+                    handler.removeCallbacksAndMessages(null);
+                    editor.apply();
+                    startActivity(next);
+                    finish();
+                }
+            };
+            handler.postDelayed(delay,3000);
+        }
+    }
     void trySound(){
         startVoiceRecognize();
     }
     void goToNextPage(){
-        tts.speak(getString(R.string.finish_recognize), TextToSpeech.QUEUE_ADD,null, null);
-        Runnable delay = new Runnable() {
-            @Override
-            public void run() {
-                tts.speak("Opening Camera", TextToSpeech.QUEUE_FLUSH,null, null);
-                Intent next = new Intent(SoundregisActivity4.this, MainActivity.class);
-                editor.putBoolean("FinishedInformation", true);
-                handler.removeCallbacksAndMessages(null);
-                editor.apply();
-                startActivity(next);
-                finish();
-            }
-        };
-        handler.postDelayed(delay,2000);
-
+        int CallPermission = checkSelfPermission(Manifest.permission.CALL_PHONE);
+        if(CallPermission != PackageManager.PERMISSION_GRANTED ){
+            requestPermissions(new String[] {Manifest.permission.CALL_PHONE},
+                    REQUEST_CODE_ASK_PERMISSIONS);
+        }
+        else{
+            System.exit(0);
+        }
     }
 }

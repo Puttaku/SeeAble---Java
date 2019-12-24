@@ -44,11 +44,10 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
     String name,tel,contactName,contactTel;
     private Executor executor = Executors.newSingleThreadExecutor();
     private TextView textViewResult,nameText,telText,conName,conTel;
-    private Button btnDetectObject, btnToggleCamera,plus_icon;
+    private Button plus_icon;
     private ImageView imageViewResult;
     private CameraView cameraView;
     private Handler handler = new Handler();
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     Runnable runnable;
     String userData = "userData";
     @Override
@@ -61,32 +60,15 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         dialog = new Dialog(this);
         plus_icon = findViewById(R.id.plus_button);
         cameraView = findViewById(R.id.cameraView);
-        int CallPermission = checkSelfPermission(Manifest.permission.CALL_PHONE);
-        int CameraPermission = checkSelfPermission(Manifest.permission.CAMERA);
-        int AudioPermission = checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS);
-        if(CallPermission != PackageManager.PERMISSION_GRANTED || CameraPermission != PackageManager.PERMISSION_GRANTED  || AudioPermission != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[] {Manifest.permission.CALL_PHONE,Manifest.permission.CAMERA,Manifest.permission.MODIFY_AUDIO_SETTINGS},
-                    REQUEST_CODE_ASK_PERMISSIONS);
-        }
-        else{
-            cameraView.setMethod(CameraKit.Constants.METHOD_STILL);
-        }
         cameraView.setMethod(CameraKit.Constants.METHOD_STILL);
         tts = new TextToSpeech(this, this,"com.google.android.tts");
-//        imageViewResult = findViewById(R.id.imageViewResult);
         textViewResult = findViewById(R.id.textViewResult);
         textViewResult.setMovementMethod(new ScrollingMovementMethod());
-//        btnToggleCamera = findViewById(R.id.btnToggleCamera);
-        btnDetectObject = findViewById(R.id.btnDetectObject);
-//        nameText = findViewById(R.id.name_main);
-//        telText = findViewById(R.id.name_main2);
         SharedPreferences pref = getSharedPreferences(userData, 0);
         name = pref.getString("Username","-");
         tel = pref.getString("Tel","-");
         contactName = pref.getString("Contactname","-");
         contactTel = pref.getString("ContactTel","-");
-//        nameText.setText("Name : " + name);
-//        telText.setText("Tel : " + tel);
         textViewResult.setText("Waiting for new Event...");
         cameraView.addCameraKitListener(new CameraKitEventListener() {
             @Override
@@ -104,8 +86,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
                 Bitmap bitmap = cameraKitImage.getBitmap();
 
                 bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
-
-//                imageViewResult.setImageBitmap(bitmap);
 
                 final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
                 if(!tts.isSpeaking()){
@@ -125,20 +105,6 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
 
             }
         });
-
-//        btnToggleCamera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                cameraView.toggleFacing();
-//            }
-//        });
-
-        btnDetectObject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cameraView.captureImage();
-            }
-        });
         plus_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -150,12 +116,10 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         runnable = new Runnable() {
             @Override
             public void run() {
-                if(checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED  && checkSelfPermission(Manifest.permission.MODIFY_AUDIO_SETTINGS) != PackageManager.PERMISSION_GRANTED){
+                if(checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                    cameraView.setFocus(CameraKit.Constants.FOCUS_CONTINUOUS);
                     cameraView.captureImage();
                     handler.postDelayed(this, 1000);
-                }
-                else{
-                    finish();
                 }
             }
         };
@@ -221,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements TextToSpeech.OnIn
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                btnDetectObject.setVisibility(View.VISIBLE);
+
             }
         });
     }
